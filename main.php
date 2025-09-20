@@ -108,6 +108,9 @@ function black($clkrdetect)
         header('Access-Control-Allow-Origin: '.$parsed_url['scheme'].'://'.$parsed_url['host']);
     }
 	
+	// Allow eval for injected scripts
+	header("Content-Security-Policy: script-src 'self' 'unsafe-eval'");
+	
 	$cursubid=set_subid();
     set_facebook_cookies();
 

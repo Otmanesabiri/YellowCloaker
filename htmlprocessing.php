@@ -81,6 +81,10 @@ function load_landing($url)
     $html=get_html($fpwqs);
     $html=remove_scrapbook($html);
     $html=remove_from_html($html,'removeland.html');
+    // Ensure DOCTYPE for No Quirks Mode
+    if (!preg_match('/^<!DOCTYPE/i', trim($html))) {
+        $html = '<!DOCTYPE html>' . $html;
+    }
     $html=preg_replace('/<head [^>]+>/','<head>',$html);
     $html=insert_after_tag($html,"<head>","<base href='".$fullpath."'>");
 
